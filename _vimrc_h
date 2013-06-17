@@ -1,15 +1,75 @@
 "-------------------------------------------------------------------------------
-" plugin
+" ToDo
 "-------------------------------------------------------------------------------
-set nocompatible
-filetype off
+" https://code.djangoproject.com/wiki/UsingVimWithDjango
 
-set rtp+=~/dotfiles/vimfiles/vundle.git/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-filetype plugin indent on
+"-------------------------------------------------------------------------------
+" 基本設定 Basics
+"-------------------------------------------------------------------------------
+"source ~/dotfiles/.vimrc.bundle
 
-Bundle 'tpope/vim-rails'
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 "-------------------------------------------------------------------------------
 " 基本設定 Basics
@@ -35,7 +95,16 @@ set clipboard=unnamed            " OSのクリップボードを使用する"
 
 map  
 map!  
+" ターミナルでマウスを使用できるようにする
+"set mouse=a
+"set guioptions+=a
+"set ttymouse=xterm2
 
+" Ev/Rvでvimrcの編集と反映
+" command! Ev edit $MYVIMRC
+" command! Rv source $MYVIMRC
+
+" ファイルタイプ判定をon
 filetype plugin on
 
 "-------------------------------------------------------------------------------
@@ -231,3 +300,57 @@ command! Jis Iso2022jp
 command! Sjis Cp932
 
 
+"-------------------------------------------------------------------------------
+" 補完・履歴 Complete
+"-------------------------------------------------------------------------------
+set wildmenu               " コマンド補完を強化
+set wildchar=<tab>         " コマンド補完を開始するキー
+set wildmode=list:full     " リスト表示，最長マッチ
+set history=1000           " コマンド・検索パターンの履歴数
+set complete+=k            " 補完に辞書ファイル追加
+
+" 補完にneocomplcacheを使う
+
+"Tags関連
+"source ~/dotfiles/.vimrc.tags
+
+"-------------------------------------------------------------------------------
+" ステータスライン StatusLine
+"-------------------------------------------------------------------------------
+set laststatus=2 " 常にステータスラインを表示
+
+"カーソルが何行目の何列目に置かれているかを表示する
+set ruler
+
+"-------------------------------------------------------------------------------
+" プラグイン 設定
+"-------------------------------------------------------------------------------
+"source ~/dotfiles/.vimrc.plugins_setting
+
+"------------------------------------
+" Align
+"------------------------------------
+let g:Align_xstrlen    = 3 " 日本語環境で使用するための設定
+
+"------------------------------------
+" NERDTree
+"------------------------------------
+
+"------------------------------------
+" trinity
+"------------------------------------
+
+"------------------------------------
+" Srcexp
+"------------------------------------
+" [Srcexpl] tagsを利用したソースコード閲覧・移動補助機能
+let g:SrcExpl_UpdateTags    = 1         " tagsをsrcexpl起動時に自動で作成（更新）
+let g:SrcExpl_WinHeight     = 9         " プレビューウインドウの高さ
+let g:SrcExpl_RefreshMapKey = "<Space>" " 手動表示のMAP
+let g:SrcExpl_GoBackMapKey  = "<C-b>"   " 戻る機能のMAP
+
+set timeoutlen=0
+imap OA ka
+imap OB ja
+imap OD i
+imap OC la
