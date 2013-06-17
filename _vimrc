@@ -186,13 +186,13 @@ set hlsearch   " 検索文字をハイライト
 " 編集関連 Edit
 "-------------------------------------------------------------------------------
 " insertモードを抜けるとIMEオフ
-set noimdisable
-set iminsert=0 imsearch=0
-set noimcmdline
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+"set noimdisable
+"set iminsert=0 imsearch=0
+"set noimcmdline
+"inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Tabキーを空白に変換
-" set expandtab
+set expandtab
 
 " コンマの後に自動的にスペースを挿入
 "inoremap , ,<Space>
