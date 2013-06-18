@@ -210,6 +210,8 @@ set expandtab
 " 文字コード認識はbanyan/recognize_charcode.vimへ
 set fileformats=unix,dos,mac  " 改行文字
 set encoding=utf-8    " デフォルトエンコーディング
+set fenc=utf-8
+set fencs=iso-2022-jp,enc-jp,cp932
 autocmd FileType svn    :set fileencoding=utf-8
 autocmd FileType js     :set fileencoding=utf-8
 autocmd FileType css    :set fileencoding=utf-8
