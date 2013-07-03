@@ -1,15 +1,38 @@
 "-------------------------------------------------------------------------------
 " plugin
 "-------------------------------------------------------------------------------
-set nocompatible
 filetype off
 
-set rtp+=~/dotfiles/vimfiles/vundle.git/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle.vim.git
+  call neobundle#rc(expand('~/.vim/.bundle'))
+endif
+
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'taichouchou2/vim-endwise.git'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neocomplcache-rsense'
+NeoBundle 'taichouchou2/rsense-0.3'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'ujihisa/unite-rake'
+NeoBundleLazy 'taichouchou2/unite-rails_best_practices'
+NeoBundleLazy 'taichouchou2/unite-reek'
+NeoBundleLazy 'taichouchou2/alpaca_complete'
+
+let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake alpaca_complete'
+
+NeoBundleLazy 'vim-ruby/vim-ruby'
+NeoBundleLazy 'taka84u9/vim-ref-ri'
+NeoBundleLazy 'skwp/vim-rspec'
+NeoBundleLazy 'ruby-matchit'
+
+filetype plugin on
 filetype plugin indent on
 
-Bundle 'tpope/vim-rails'
 
 "-------------------------------------------------------------------------------
 " 基本設定 Basics
@@ -33,8 +56,8 @@ set modelines=0                  " モードラインは無効
 let mapleader = ","              " キーマップリーダー
 set clipboard=unnamed            " OSのクリップボードを使用する"
 
-map  
-map!  
+"map  
+"map!  
 
 filetype plugin on
 
@@ -140,12 +163,12 @@ set splitright       " 縦分割したら新しいウィンドウは右に
 "-------------------------------------------------------------------------------
 " 移動設定 Move
 "-------------------------------------------------------------------------------
-nnoremap h <Left>
-nnoremap j gj
-nnoremap k gk
-nnoremap l <Right>
-nnoremap <Down> gj
-nnoremap <Up>   gk
+"nnoremap h <Left>
+"nnoremap j gj
+"nnoremap k gk
+"nnoremap l <Right>
+"nnoremap <Down> gj
+"nnoremap <Up>   gk
 
 " インサートモードでもCtrl + hjklで移動
 
@@ -162,7 +185,7 @@ nnoremap <C-h> <C-w>h
 " 最後に編集された位置に移動
 
 " 矩形選択で自由に移動する
-set virtualedit+=block
+"set virtualedit+=block
 
 
 "-------------------------------------------------------------------------------
