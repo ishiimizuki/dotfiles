@@ -18,6 +18,10 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'AutoClose'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'tomasr/molokai'
 NeoBundleLazy 'ujihisa/unite-rake'
 NeoBundleLazy 'taichouchou2/unite-rails_best_practices'
 NeoBundleLazy 'taichouchou2/unite-reek'
@@ -65,7 +69,8 @@ filetype plugin on
 " カラー関連 Colors
 "-------------------------------------------------------------------------------
 set t_Co=256
-"colorscheme molokai
+"colorscheme railscasts
+colorscheme molokai
 "autocmd VimEnter * :GuiColorScheme darkspectrum
 
 " ハイライト on
@@ -255,4 +260,16 @@ command! Utf8 edit ++enc=utf-8
 command! Jis Iso2022jp
 command! Sjis Cp932
 
+"--------------------------------------------------------------------------------
+" easy motion settings
+"--------------------------------------------------------------------------------
 
+" ホームポジションに近いキーを使う
+let g:EasyMotion_keys='qwertyuiopasdfghjklzxcvbnm'
+" 「'」 + 何かにマッピング
+let g:EasyMotion_leader_key=';'
+" 1 ストローク選択を優先する
+let g:EasyMotion_grouping=1
+" カラー設定変更
+hi EasyMotionTarget ctermbg=none ctermfg=red
+hi EasyMotionShade  ctermbg=none ctermfg=blue
