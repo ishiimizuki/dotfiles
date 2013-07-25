@@ -19,8 +19,6 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundle 'AutoClose'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-rake'
@@ -139,29 +137,29 @@ set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形�
 set display=uhex      " 印字不可能文字を16進数で表示
 
 " 全角スペースの表示
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-match ZenkakuSpace /　/
-
-" カーソル行をハイライト
-set cursorline
-
-" カレントウィンドウにのみ罫線を引く
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
-
-highlight CursorLine guibg=#262626 " カーソル行のカラーを設定
-highlight NonText    guifg=#666666 " NonTextのカラーを設定
-highlight Pmenu      guibg=#666666 " ポップアップメニューのカラーを設定
-highlight PmenuSel   guibg=#8cd0d3 guifg=#666666
-highlight PmenuSbar  guibg=#333333
-
-" コマンド実行中は再描画しない
-set lazyredraw
-
-" 高速ターミナル接続を行う
+"highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+"match ZenkakuSpace /　/
+"
+"" カーソル行をハイライト
+"set cursorline
+"
+"" カレントウィンドウにのみ罫線を引く
+"augroup cch
+"  autocmd! cch
+"  autocmd WinLeave * set nocursorline
+"  autocmd WinEnter,BufRead * set cursorline
+"augroup END
+"
+"highlight CursorLine guibg=#262626 " カーソル行のカラーを設定
+"highlight NonText    guifg=#666666 " NonTextのカラーを設定
+"highlight Pmenu      guibg=#666666 " ポップアップメニューのカラーを設定
+"highlight PmenuSel   guibg=#8cd0d3 guifg=#666666
+"highlight PmenuSbar  guibg=#333333
+"
+"" コマンド実行中は再描画しない
+"set lazyredraw
+"
+"" 高速ターミナル接続を行う
 set ttyfast
 
 set splitbelow       " 横分割したら新しいウィンドウは下に
@@ -262,16 +260,7 @@ command! Utf8 edit ++enc=utf-8
 command! Jis Iso2022jp
 command! Sjis Cp932
 
-"--------------------------------------------------------------------------------
-" easy motion settings
-"--------------------------------------------------------------------------------
-
-" ホームポジションに近いキーを使う
-let g:EasyMotion_keys='qwertyuiopasdfghjklzxcvbnm'
-" 「'」 + 何かにマッピング
-let g:EasyMotion_leader_key=';'
-" 1 ストローク選択を優先する
-let g:EasyMotion_grouping=1
-" カラー設定変更
-hi EasyMotionTarget ctermbg=none ctermfg=red
-hi EasyMotionShade  ctermbg=none ctermfg=blue
+"------------------------------------------------------------------------------
+""nerdtree
+"------------------------------------------------------------------------------
+noremap <F1> :NERDTreeToggle<CR>
