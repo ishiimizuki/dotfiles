@@ -3,40 +3,48 @@
 "-------------------------------------------------------------------------------
 filetype off
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/neobundle.vim.git
-  call neobundle#rc(expand('~/.vim/.bundle'))
+if &compatible
+  set nocompatible
 endif
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'taichouchou2/vim-endwise.git'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neocomplcache-rsense'
-NeoBundle 'taichouchou2/rsense-0.3'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'tpope/vim-rake'
-NeoBundleLazy 'ujihisa/unite-rake'
-NeoBundleLazy 'taichouchou2/unite-rails_best_practices'
-NeoBundleLazy 'taichouchou2/unite-reek'
-NeoBundleLazy 'taichouchou2/alpaca_complete'
+if dein#load_state('~/.vim/bundles')
+  call dein#begin('~/.vim/bundles')
 
-let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake alpaca_complete'
+  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/vimproc')
+  call dein#add('taichouchou2/vim-endwise.git')
+  call dein#add('Shougo/neocomplcache')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neocomplcache-rsense')
+  call dein#add('taichouchou2/rsense-0.3')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('thinca/vim-ref')
+  call dein#add('tpope/vim-rails')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('jpo/vim-railscasts-theme')
+  call dein#add('tomasr/molokai')
+  call dein#add('tpope/vim-rake')
+  call dein#add('ujihisa/unite-rake')
+  call dein#add('taichouchou2/unite-rails_best_practices')
+  call dein#add('taichouchou2/unite-reek')
+  call dein#add('taichouchou2/alpaca_complete')
 
-NeoBundleLazy 'vim-ruby/vim-ruby'
-NeoBundleLazy 'taka84u9/vim-ref-ri'
-NeoBundleLazy 'skwp/vim-rspec'
-NeoBundleLazy 'ruby-matchit'
+  let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake alpaca_complete'
+
+  call dein#add('vim-ruby/vim-ruby')
+  call dein#add('taka84u9/vim-ref-ri')
+  call dein#add('skwp/vim-rspec')
+  call dein#add('ruby-matchit')
+
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin on
 filetype plugin indent on
-
 
 "-------------------------------------------------------------------------------
 " 基本設定 Basics
